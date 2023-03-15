@@ -12,13 +12,21 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+//indica ao spring que o objeto de postagem vai virar uma tabela no banco de dados
 @Entity
+
+// passar um nome para a tabela no banco de dados
 @Table(name = "tb_postagens")
 public class Postagem {
 	
+	
+	// indica a chave primaria da tabela de postagem
 	@Id
+	
+	// equivalente ao auto_increment na criação da chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	
 	@NotBlank(message = "O atributo título é Obrigatório!")
 	@Size(min = 5, max = 100, message = "O atributo título deve conter no minimo 05 e no máximo 100 caracteres")
@@ -32,7 +40,7 @@ public class Postagem {
 	private LocalDateTime data;
 	
 	//Insira dos Getters and Setters
-
+	
 	public Long getId() {
 		return id;
 	}
