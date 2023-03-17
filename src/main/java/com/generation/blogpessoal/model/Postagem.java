@@ -6,15 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //indica ao spring que o objeto de postagem vai virar uma tabela no banco de dados
 @Entity
-
 // passar um nome para a tabela no banco de dados
 @Table(name = "tb_postagens")
 public class Postagem {
@@ -22,7 +24,6 @@ public class Postagem {
 	
 	// indica a chave primaria da tabela de postagem
 	@Id
-	
 	// equivalente ao auto_increment na criação da chave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -38,6 +39,12 @@ public class Postagem {
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@ManyToOne
+	
+	//Não entendi muito bem essa etapa
+	@JsonIgnoreProperties("postagem")  //Encerra o looping quando e acertado na 'postagem'.
+	private Tema tema;
 	
 	//Insira dos Getters and Setters
 	
@@ -72,5 +79,14 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+	
 
 }
