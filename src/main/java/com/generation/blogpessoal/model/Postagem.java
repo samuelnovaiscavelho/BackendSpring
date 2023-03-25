@@ -41,10 +41,13 @@ public class Postagem {
 	private LocalDateTime data;
 	
 	@ManyToOne
-	
 	//Não entendi muito bem essa etapa
 	@JsonIgnoreProperties("postagem")  //Encerra o looping quando e acertado na 'postagem'.
 	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 	
 	//Insira dos Getters and Setters
 	
@@ -87,6 +90,13 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 }
